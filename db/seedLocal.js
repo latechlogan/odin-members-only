@@ -1,14 +1,14 @@
 const pool = require("./pool");
 
 const USERS_SEED_DATA = `
-    INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('Alice', 'Chen', 'alice.chen@example.com', 'hashed_password_1', 'basic');
+    INSERT INTO users (first_name, last_name, email, password_hash, is_member, is_admin)
+    VALUES ('Alice', 'Chen', 'alice.chen@example.com', 'hashed_password_1', FALSE, FALSE);
 
-    INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('Marcus', 'Johnson', 'marcus.j@example.com', 'hashed_password_2', 'member');
+    INSERT INTO users (first_name, last_name, email, password_hash, is_member, is_admin)
+    VALUES ('Marcus', 'Johnson', 'marcus.j@example.com', 'hashed_password_2', TRUE, FALSE);
 
-    INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('Sarah', 'Miller', 'sarah.miller@example.com', 'hashed_password_3', 'admin');
+    INSERT INTO users (first_name, last_name, email, password_hash, is_member, is_admin)
+    VALUES ('Sarah', 'Miller', 'sarah.miller@example.com', 'hashed_password_3', TRUE, TRUE);
 `;
 
 const MESSAGES_SEED_DATA = `

@@ -7,7 +7,8 @@ const CREATE_USERS_TABLE = `
         last_name VARCHAR(100) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
-        user_status VARCHAR(20) DEFAULT 'basic',  -- 'basic', 'member', 'admin'
+        is_member BOOLEAN DEFAULT FALSE,
+        is_admin BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 `;
