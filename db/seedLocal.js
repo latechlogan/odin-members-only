@@ -2,24 +2,24 @@ const pool = require("./pool");
 
 const USERS_SEED_DATA = `
     INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('George', 'Washington', 'gwashington@gmail.com', 'USA', 'basic');
+    VALUES ('Alice', 'Chen', 'alice.chen@example.com', 'hashed_password_1', 'basic');
 
     INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('Abraham', 'Lincoln', 'honestabe@gmail.com', 'USA', 'member');
+    VALUES ('Marcus', 'Johnson', 'marcus.j@example.com', 'hashed_password_2', 'member');
 
     INSERT INTO users (first_name, last_name, email, password_hash, user_status)
-    VALUES ('Donald', 'Trump', '45@gmail.com', 'USA', 'admin');
+    VALUES ('Sarah', 'Miller', 'sarah.miller@example.com', 'hashed_password_3', 'admin');
 `;
 
 const MESSAGES_SEED_DATA = `
     INSERT INTO messages (title, content, user_id)
-    VALUES ('Honesy', 'Honesty is the best policy', 1);
-    
-    INSERT INTO messages (title, content, user_id)
-    VALUES ('Truth', 'I cannot tell a lie', 2);
+    VALUES ('New to the group', 'Hey everyone, just signed up. Excited to be here!', 1);
 
     INSERT INTO messages (title, content, user_id)
-    VALUES ('The Very Best', 'It is gonna be yuge!', 3);
+    VALUES ('Weekend plans', 'Anyone up for a hiking trip this Saturday?', 2);
+
+    INSERT INTO messages (title, content, user_id)
+    VALUES ('Welcome new members', 'A quick reminder to read the community guidelines. Happy posting!', 3);
 `;
 
 const seed = async () => {
