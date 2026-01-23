@@ -1,6 +1,10 @@
 const { validationResult, matchedData } = require("express-validator");
 
-const signup = (req, res) => {
+const signupGet = (req, res) => {
+  res.render("signup-form");
+};
+
+const signupPost = (req, res) => {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
@@ -12,4 +16,4 @@ const signup = (req, res) => {
   res.redirect("/");
 };
 
-module.exports = { signup };
+module.exports = { signupGet, signupPost };
