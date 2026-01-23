@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const authRouter = require("./routes/authRouter");
+
 require("dotenv").config();
 
 app.set("view engine", "ejs");
@@ -10,17 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // public routes
-app.get("/signup", (req, res) => res.send("show signup form"));
-app.post("/signup", (req, res) => res.send("create new user"));
-
-app.get("/login", (req, res) => res.send("show login form"));
-app.post("/login", (req, res) => res.send("authenticate user"));
-
-app.get("/logout", (req, res) => res.send("log user out"));
-
-app.get("/", (req, res) =>
-  res.send("show all messages (hide authors for non-members)"),
-);
+app.get("/", (req, res) => res.render("index"));
+app.use(authRouter);
 
 // protected routes (must be logged in)
 app.get("/messages/new", (req, res) => res.send("show create message form"));
