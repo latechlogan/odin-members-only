@@ -3,6 +3,8 @@ const app = express();
 const PORT = 3000;
 require("dotenv").config();
 
+app.set("view engine", "ejs");
+
 // middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
