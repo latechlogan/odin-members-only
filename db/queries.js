@@ -19,7 +19,7 @@ const createNewUser = async (userData, hashedPassword) => {
       userData.email,
       hashedPassword,
       false,
-      false,
+      userData.is_admin,
     ],
   );
 

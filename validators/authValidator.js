@@ -29,6 +29,7 @@ const signupValidation = [
     }
     return true;
   }),
+  body("is_admin").default(false).replace("on", true),
 ];
 
 module.exports = { signupValidation };
