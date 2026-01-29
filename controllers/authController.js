@@ -1,10 +1,11 @@
 const { validationResult, matchedData } = require("express-validator");
+const password = require("../utils/password");
 
 const signupGet = (req, res) => {
   res.render("signup-form");
 };
 
-const signupPost = (req, res) => {
+const signupPost = async (req, res) => {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
@@ -12,6 +13,7 @@ const signupPost = (req, res) => {
   }
 
   const data = matchedData(req);
+  const hashedPassword = await password.hash(data.password);
   console.log(`Signup: ${data.email}`);
   res.redirect("/");
 };
