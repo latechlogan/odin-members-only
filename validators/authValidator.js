@@ -13,7 +13,16 @@ const signupValidation = [
   body("password")
     .notEmpty()
     .withMessage("Password is required")
-    .isStrongPassword(),
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+    .withMessage(
+      "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol.",
+    ),
   body("password_confirm").custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error("Passwords do not match");
