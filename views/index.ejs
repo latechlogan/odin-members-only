@@ -6,6 +6,12 @@
     <title>Members Only | Home</title>
   </head>
   <body>
-    <h1>Members Only Homepage</h1>
+    <% if (currentUser) { %>
+      <h1>Hi <%= currentUser.first_name %> </h1>
+      <form action="/logout" method="post"><button type="submit">Logout</button></form>
+    <% } else { %>
+      <h1>Members Only Homepage</h1>
+      <a href="/signup">Sign Up</a>&nbsp;<a href="/login">Login</a>
+    <% } %>
   </body>
 </html>
