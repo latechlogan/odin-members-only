@@ -1,5 +1,5 @@
 const { validationResult, matchedData } = require("express-validator");
-const password = require("../utils/password");
+const { hash } = require("../utils/password");
 const db = require("../db/queries");
 
 const signupGet = (req, res) => {
@@ -14,14 +14,14 @@ const signupPost = async (req, res) => {
   }
 
   const data = matchedData(req);
-  const hashedPassword = await password.hash(data.password);
+  const hashedPassword = await hash(data.password);
 
   try {
     await db.createNewUser(data, hashedPassword);
     console.log(`Signup: ${data.email}`);
     res.redirect("/");
   } catch (error) {
-    res.status(500).send("Something went wrong");
+    res.status(500).send(error.message);
   }
 };
 

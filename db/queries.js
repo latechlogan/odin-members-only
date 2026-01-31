@@ -1,11 +1,25 @@
 const pool = require("./pool");
 
-const createNewUser = async (userData, hashedPassword) => {
-  const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [
-    userData.email,
+const getUserById = async (userId) => {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [
+    userId,
   ]);
 
-  if (rows.length > 0) {
+  return rows[0];
+};
+
+const getUserByEmail = async (userEmail) => {
+  const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [
+    userEmail,
+  ]);
+
+  return rows[0];
+};
+
+const createNewUser = async (userData, hashedPassword) => {
+  const rows = await getUserByEmail(userData.email);
+
+  if (rows) {
     throw new Error("Email already in use");
   }
 
@@ -26,4 +40,4 @@ const createNewUser = async (userData, hashedPassword) => {
   return result.rows[0];
 };
 
-module.exports = { createNewUser };
+module.exports = { getUserById, getUserByEmail, createNewUser };
