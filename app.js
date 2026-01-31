@@ -39,24 +39,17 @@ app.use((req, res, next) => {
 
 // Public Routes
 const authRouter = require("./routes/authRouter");
+const messagesRouter = require("./routes/messagesRouter");
 
 app.get("/", (req, res) => res.render("index"));
 app.use(authRouter);
-
-// Protected Routes (must be logged in)
-app.get("/messages/new", (req, res) => res.send("show create message form"));
-app.post("/messages", (req, res) => res.send("create new message"));
+app.use("/messages", messagesRouter);
 
 app.get("/join", (req, res) =>
   res.send('show "join the club" form (enter secret passcode)'),
 );
 app.post("/join", (req, res) =>
   res.send("verify passcode, upgrade user to member"),
-);
-
-// Admin ONLY Routes
-app.post("/messages/:id/delete", (req, res) =>
-  res.send("delete a message (only if admin)"),
 );
 
 // Start Server
