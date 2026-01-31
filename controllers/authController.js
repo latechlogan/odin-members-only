@@ -3,7 +3,7 @@ const { hash } = require("../utils/password");
 const db = require("../db/queries");
 
 const signupGet = (req, res) => {
-  res.render("signup-form");
+  res.render("signup");
 };
 
 const signupPost = async (req, res) => {
@@ -25,4 +25,17 @@ const signupPost = async (req, res) => {
   }
 };
 
-module.exports = { signupGet, signupPost };
+const loginGet = (req, res) => {
+  res.render("login");
+};
+
+const logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+module.exports = { signupGet, signupPost, loginGet, logout };

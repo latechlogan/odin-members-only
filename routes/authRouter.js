@@ -11,7 +11,7 @@ router.post(
   authController.signupPost,
 );
 
-router.get("/login", (req, res) => res.send("show login form"));
+router.get("/login", authController.loginGet);
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -20,13 +20,6 @@ router.post(
   }),
 );
 
-router.get("/logout", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
+router.get("/logout", authController.logout);
 
 module.exports = router;
