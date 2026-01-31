@@ -6,12 +6,28 @@
     <title>Members Only | Home</title>
   </head>
   <body>
+    <h1>Members Only Homepage</h1>
     <% if (currentUser) { %>
-      <h1>Hi <%= currentUser.first_name %> </h1>
       <form action="/logout" method="post"><button type="submit">Logout</button></form>
     <% } else { %>
-      <h1>Members Only Homepage</h1>
       <a href="/signup">Sign Up</a>&nbsp;<a href="/login">Login</a>
     <% } %>
+    
+    <section>
+      <% messages.forEach(message => { %>
+        <section>
+          <h2><%= message.title %></h2>
+          <p><%= message.content %></p>
+          <span>
+            <% if (currentUser) { %>
+              <p><%= message.first_name %>&nbsp;<%= message.last_name%></p>
+            <% } else { %>
+              <p>Anonymous</p>
+              <p><%= message.created_at%></p>
+            <% } %>
+          </span>
+        </section>
+      <% }); %>
+    </section>
   </body>
 </html>

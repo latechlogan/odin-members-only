@@ -40,8 +40,9 @@ app.use((req, res, next) => {
 // Public Routes
 const authRouter = require("./routes/authRouter");
 const messagesRouter = require("./routes/messagesRouter");
+const messagesController = require("./controllers/messagesController");
 
-app.get("/", (req, res) => res.render("index"));
+app.get("/", messagesController.index);
 app.use(authRouter);
 app.use("/messages", messagesRouter);
 

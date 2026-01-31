@@ -40,4 +40,15 @@ const createNewUser = async (userData, hashedPassword) => {
   return result.rows[0];
 };
 
-module.exports = { getUserById, getUserByEmail, createNewUser };
+const listMessages = async () => {
+  const { rows } = await pool.query(
+    `SELECT messages.*, users.first_name, users.last_name
+    FROM messages
+    JOIN users ON messages.user_id = users.id
+    `,
+  );
+
+  return rows;
+};
+
+module.exports = { getUserById, getUserByEmail, createNewUser, listMessages };
