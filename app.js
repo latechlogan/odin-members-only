@@ -31,7 +31,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Custom Middleware
+// Make current user available to all views
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
