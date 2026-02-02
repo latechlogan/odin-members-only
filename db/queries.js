@@ -51,4 +51,17 @@ const listMessages = async () => {
   return rows;
 };
 
-module.exports = { getUserById, getUserByEmail, createNewUser, listMessages };
+const createNewMessage = async (title, content, user) => {
+  await pool.query(
+    `INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)`,
+    [title, content, user],
+  );
+};
+
+module.exports = {
+  getUserById,
+  getUserByEmail,
+  createNewUser,
+  listMessages,
+  createNewMessage,
+};

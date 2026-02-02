@@ -8,6 +8,7 @@
   <body>
     <h1>Members Only Homepage</h1>
     <% if (currentUser) { %>
+      <a href="/messages/new">Create Message</a>
       <form action="/logout" method="post"><button type="submit">Logout</button></form>
     <% } else { %>
       <a href="/signup">Sign Up</a>&nbsp;<a href="/login">Login</a>

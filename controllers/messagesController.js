@@ -6,11 +6,13 @@ const index = async (req, res) => {
 };
 
 const showMessageForm = (req, res) => {
-  res.send("show new message form");
+  res.render("create-message");
 };
 
 const createNewMessage = async (req, res) => {
-  res.send("create new message");
+  const { messageTitle, messageContent } = req.body;
+  await db.createNewMessage(messageTitle, messageContent, req.user.id);
+  res.redirect("/");
 };
 
 const deleteMessage = async (req, res) => {
