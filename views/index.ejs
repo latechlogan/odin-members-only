@@ -10,7 +10,7 @@
     <% if (currentUser) { %>
       <a href="/messages/new">Create Message</a>
       <% if (!currentUser.is_member && !currentUser.is_admin) { %>
-        <a href="#">Join the Club</a>
+        <a href="/join">Join the Club</a>
       <% } %>
       <form action="/logout" method="post"><button type="submit">Logout</button></form>
     <% } else { %>
@@ -23,7 +23,7 @@
           <h2><%= message.title %></h2>
           <p><%= message.content %></p>
           <span>
-            <% if (currentUser && currentUser.is_member || currentUser.is_admin) { %>
+            <% if (currentUser && (currentUser.is_member || currentUser.is_admin)) { %>
               <p><%= message.first_name %>&nbsp;<%= message.last_name%>&ensp;<%= message.created_at%></p>
             <% } else { %>
               <p><%= message.first_name[0] %><%= message.last_name[0] %></p>
