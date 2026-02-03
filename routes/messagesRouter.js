@@ -8,6 +8,6 @@ router.get("/new", ensureAuthenticated, messagesController.showMessageForm);
 router.post("/", ensureAuthenticated, messagesController.createNewMessage);
 
 // admin ONLY route
-router.delete("/:id", ensureAdmin, messagesController.deleteMessage);
+router.post("/:id/delete", ensureAdmin, messagesController.deleteMessage);
 
 module.exports = router;

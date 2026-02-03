@@ -16,7 +16,9 @@ const createNewMessage = async (req, res) => {
 };
 
 const deleteMessage = async (req, res) => {
-  res.send("delete message");
+  const messageId = req.params.id;
+  await db.deleteMessage(messageId);
+  res.redirect("/");
 };
 
 module.exports = { index, showMessageForm, createNewMessage, deleteMessage };

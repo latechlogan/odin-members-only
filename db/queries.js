@@ -58,10 +58,12 @@ const createNewMessage = async (title, content, user) => {
   );
 };
 
+const deleteMessage = async (id) => {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+};
+
 const makeMember = async (userId) => {
-  await pool.query(`UPDATE users SET is_member = true WHERE id = $1`, [
-    userId,
-  ]);
+  await pool.query(`UPDATE users SET is_member = true WHERE id = $1`, [userId]);
 };
 
 module.exports = {
@@ -70,5 +72,6 @@ module.exports = {
   createNewUser,
   listMessages,
   createNewMessage,
+  deleteMessage,
   makeMember,
 };

@@ -33,6 +33,11 @@
               </p>
             <% } %>
           </span>
+          <% if (currentUser && currentUser.is_admin) { %>
+            <form action="/messages/<%= message.id %>/delete" method="post">
+              <button type="submit">Delete</button>
+            </form>
+          <% } %>
         </section>
       <% }); %>
     </section>
