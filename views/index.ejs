@@ -26,7 +26,11 @@
             <% if (currentUser && (currentUser.is_member || currentUser.is_admin)) { %>
               <p><%= message.first_name %>&nbsp;<%= message.last_name%>&ensp;<%= message.created_at%></p>
             <% } else { %>
-              <p><%= message.first_name[0] %><%= message.last_name[0] %></p>
+              <p>
+                <%= message.first_name[0] %><%= '*'.repeat(message.first_name.length - 1) %>
+                &nbsp;
+                <%= message.last_name[0] %><%= '*'.repeat(message.last_name.length - 1) %>
+              </p>
             <% } %>
           </span>
         </section>
