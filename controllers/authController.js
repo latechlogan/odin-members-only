@@ -17,9 +17,14 @@ const signupPost = async (req, res) => {
   const hashedPassword = await hash(data.password);
 
   try {
-    await db.createNewUser(data, hashedPassword);
+    const user = await db.createNewUser(data, hashedPassword);
     console.log(`Signup: ${data.email}`);
-    res.redirect("/");
+    req.login(user, (err) => {
+      if (err) {
+        return res.status(500).send(err.message);
+      }
+      res.redirect("/");
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }
