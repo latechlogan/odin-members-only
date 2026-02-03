@@ -58,10 +58,17 @@ const createNewMessage = async (title, content, user) => {
   );
 };
 
+const makeMember = async (userId) => {
+  await pool.query(`UPDATE users SET is_member = true WHERE id = $1`, [
+    userId,
+  ]);
+};
+
 module.exports = {
   getUserById,
   getUserByEmail,
   createNewUser,
   listMessages,
   createNewMessage,
+  makeMember,
 };

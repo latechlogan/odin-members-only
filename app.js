@@ -41,17 +41,15 @@ app.use((req, res, next) => {
 const authRouter = require("./routes/authRouter");
 const messagesRouter = require("./routes/messagesRouter");
 const messagesController = require("./controllers/messagesController");
+const membershipController = require("./controllers/membershipController");
+const { ensureAuthenticated } = require("./middleware/auth");
 
 app.get("/", messagesController.index);
 app.use(authRouter);
 app.use("/messages", messagesRouter);
 
-app.get("/join", (req, res) =>
-  res.send('show "join the club" form (enter secret passcode)'),
-);
-app.post("/join", (req, res) =>
-  res.send("verify passcode, upgrade user to member"),
-);
+app.get("/join", ensureAuthenticated, membershipController.joinGet);
+app.post("/join", ensureAuthenticated, membershipController.joinPost);
 
 // Start Server
 const PORT = process.env.PORT || 3000;
