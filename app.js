@@ -6,6 +6,11 @@ require("dotenv").config();
 
 const app = express();
 
+// Trust proxy for Railway/production (enables secure cookies behind reverse proxy)
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 // View Engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
